@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .encyclopedia-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .item-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .visit-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 15px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        
+        footer {
+          background-color: #3498db;
+          color: #fff;
+        }
+        
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            height: 30px;
+            width: 200px;
+            padding: 5px;
+        }
+        
+        .search-button {
+            background: url('https://drive.google.com/uc?export=view&id=15vnYsmkRk5hragjoKgZ7Mqer8bwMuTbi') no-repeat center center;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Database JWP Edutaiment's</h1>
+    </header>
+
+    <section>
+        <h2>Selamat datang di Database Jurassic World Park Edutaiment's!</h2>
+        <p>Silahkan pilih salah satu kategori Database dibawah ini!
+        </p>
+    </section>
+    
+    <section class="search-container">
+        <input class="search-box" id="searchInput" type="text" placeholder="Cari informasi...">
+        <button class="search-button" onclick="searchData()"></button>
+    </section>
+    
+    <script>
+    function searchData() {
+        // Mendapatkan nilai dari input
+        var userInput = document.getElementById('searchInput').value.toLowerCase();
+
+        // Mendapatkan semua elemen dengan class 'encyclopedia-item'
+        var items = document.getElementsByClassName('encyclopedia-item');
+
+        // Iterasi melalui setiap elemen untuk mencari kata kunci
+        for (var i = 0; i < items.length; i++) {
+            var keywords = items[i].getAttribute('data-keywords').toLowerCase();
+
+            // Memeriksa apakah nilai input pengguna cocok dengan kata kunci
+            if (keywords.includes(userInput)) {
+                items[i].style.display = 'block';  // Tampilkan item jika cocok
+            } else {
+                items[i].style.display = 'none';   // Sembunyikan item jika tidak cocok
+            }
+        }
+    }
+</script>
+
+    <section class="encyclopedia-item" id="resultSection" data-keywords="Jurassic World Park, JWP">
+    <h2>Jurassic World Park</h2>
+    <img class="item-image" src="link_gambar_proyek.jpg" alt="Proyek Terkini">
+    <p>Silahkan tekan tombol "kunjungi" untuk mengetahui informasi lebih lanjut.</p>
+    <a class="visit-button" href="link_proyek_terkini">Kunjungi</a>
+</section>
+
+
+    <!-- Tambahkan item lain sesuai kebutuhan -->
+
+    <footer>
+        <p>&copy; 2023 The JWP Encyclopedia. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
