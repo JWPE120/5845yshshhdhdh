@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            header{
+                background-color: #0099ff;
+                color: white;
+                text-align: center;
+            }
+
+            ul{
+                text-align: left;
+                color: black;
+            }
+
+            .button-2{
+                background-color: #0099ff;
+                color: white;
+                width: 100%;
+                height: 20px;
+            }
+
+            .button-3{
+                background-color: #3cff00;
+                color: white;
+                margin-top:10px ;
+                width: 100%;
+                height: 40px;
+            }
+
+            .button-4{
+                background-color: darkgreen;
+                color: white;
+                margin-top: 10px;
+                width: 47%;
+                height: 40px;
+                margin-left: 20px;
+            }
+
+            #item-box {
+                border: 2px solid #008cff;
+                padding: 20px;
+                margin: 20px;
+                text-align: center;
+            }
+
+            .button-1 {
+                margin: 10px;
+                padding: 10px;
+                background-color: #072579;
+                color: white;
+            }
+
+            #screenshot-text {
+                margin-bottom: 10px;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            footer{
+                background-color: #0099ff;
+                text-align: center;
+                color: white;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>JWP Apps Store</h1>
+        </header>
+
+        <img src="" alt="Logo" width="100%" height="auto">
+        <h2>Jurassic Park Operation Genesis (JPOG)</h2>
+        <h3>Deskripsi/Informasi :</h3>
+        <p>Jurassic Park Operation Genesis adalah permainan video simulasi manajemen, dimana pemain diajak untuk membangun dan mengelola taman jurassic dengan benar. Sekaligus Menjaga keamanan pengunjung serta menjaga kesehatan dan kebahagiaan para dinosaurus. Permainan ini dibuat oleh Blue Tongue Software pada tahun 2003.</p>
+        <h4>Informasi File</h4>
+        <label>
+            <ul>Nama file : </ul>
+            <ul>Ukuran File : </ul>
+            <ul>Tipe File : </ul>
+            <ul>Sistem Operasi : Windows</ul>
+            <ul>Harga : Gratis</ul>
+        </label>
+
+        <div id="item-box">
+            <h3 id="screenshot-text">Screenshot</h3>
+            <button class="button-1" onclick="showImage()">Lihat Gambar</button>
+            <div id="image-content" class="hidden">
+                <img src="" alt="1" width="100px" height="auto">
+            </div>
+        </div>
+
+        <h4>Cara memasang/Mengistal</h4>
+        <iframe src="" width="100%" height="auto"></iframe>
+        <button class="button-2" onclick="redirectToUrl('https://')">Lihat Video</button>
+        <button class="button-3" onclick="redirectToUrl('https://')">Download Aplikasi</button>
+
+        <script>
+            function showImage() {
+                document.getElementById('image-content').classList.toggle('hidden');
+            }
+        </script>
+
+        <script>
+           function redirectToUrl(url) {
+                window.location.href = url;
+            }
+        </script>
+
+    </body>
+</html>
