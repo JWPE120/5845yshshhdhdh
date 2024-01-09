@@ -11,12 +11,12 @@
 		<label for="file">Upload gambar/teks:</label><br>
 		<input type="file" id="file" name="file"><br><br>
 		<label for="answer-type">Jenis jawaban:</label><br>
-		<select id="answer-type" name="answer-type">
+		<select id="answer-type" name="answer-type" onchange="toggleAnswerInput()">
 			<option value="multiple-choice">Pilihan ganda</option>
 			<option value="essay">Essay</option>
 		</select><br><br>
 		<label for="answer">Jawaban:</label><br>
-		<input type="text" id="answer" name="answer" required><br><br>
+		<div id="answer-input"></div><br>
 		<input type="submit" value="Submit">
 	</form>
 	<br>
@@ -33,6 +33,7 @@
 		const questionOutput = document.querySelector('#question-output');
 		const supportingElementOutput = document.querySelector('#supporting-element-output');
 		const answerOutput = document.querySelector('#answer-output');
+		const answerInputContainer = document.querySelector('#answer-input');
 
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();
@@ -41,15 +42,57 @@
 			const question = document.querySelector('#question').value;
 			const file = document.querySelector('#file').value;
 			const answerType = document.querySelector('#answer-type').value;
-			const answer = document.querySelector('#answer').value;
+			let answer;
+
+			if (answerType === 'multiple-choice') {
+				const answerInputs = document.querySelectorAll('.answer-input');
+				answer = Array.from(answerInputs).map(input => input.value);
+			} else {
+				answer = document.querySelector('#answer').value;
+			}
 
 			// Update output
 			questionOutput.textContent = question;
 			if (file) {
 				supportingElementOutput.innerHTML = `<img src="${file}" alt="Supporting element">`;
 			}
-			answerOutput.textContent = answer;
+			answerOutput.textContent = Array.isArray(answer) ? answer.join(', ') : answer;
 		});
+
+		function toggleAnswerInput() {
+			const answerType = document.querySelector('#answer-type').value;
+			answerInputContainer.innerHTML = '';
+
+			if (answerType === 'multiple-choice') {
+				addMultipleChoiceAnswerInput();
+			} else {
+				addEssayAnswerInput();
+			}
+		}
+
+		function addMultipleChoiceAnswerInput() {
+			const numWrongAnswers = 3;
+			const answerInput = document.createElement('div');
+			answerInput.innerHTML = '<label for="correct-answer">Jawaban Benar:</label><br>' +
+				'<input type="text" id="correct-answer" name="correct-answer" class="answer-input" required><br><br>';
+
+			for (let i = 1; i <= numWrongAnswers; i++) {
+				answerInput.innerHTML += `<label for="wrong-answer${i}">Jawaban Salah ${i}:</label><br>` +
+					`<input type="text" id="wrong-answer${i}" name="wrong-answer${i}" class="answer-input" required><br><br>`;
+			}
+
+			answerInputContainer.appendChild(answerInput);
+		}
+
+		function addEssayAnswerInput() {
+			const answerInput = document.createElement('label');
+			answerInput.innerHTML = 'Jawaban:<br>' +
+				'<input type="text" id="answer" name="answer" required><br><br>';
+			answerInputContainer.appendChild(answerInput);
+		}
+
+		// Initial setup
+		toggleAnswerInput();
 	</script>
 </body>
 </html>
