@@ -47,8 +47,6 @@
 			if (answerType === 'multiple-choice') {
 				const answerInputs = document.querySelectorAll('.answer-input');
 				answer = Array.from(answerInputs).map(input => input.value);
-			} else {
-				answer = document.querySelector('#answer').value;
 			}
 
 			// Update output
@@ -87,7 +85,7 @@
 		function addEssayAnswerInput() {
 			const answerInput = document.createElement('label');
 			answerInput.innerHTML = 'Jawaban:<br>' +
-				'<input type="text" id="answer" name="answer" required><br><br>';
+				'<input type="text" id="answer" name="answer" required readonly><br><br>';
 			answerInputContainer.appendChild(answerInput);
 		}
 
