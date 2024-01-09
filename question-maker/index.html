@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Maker</title>
+</head>
+<body>
+	<h1>Quiz Maker</h1>
+	<form>
+		<label for="question">Pertanyaan:</label><br>
+		<input type="text" id="question" name="question" required><br><br>
+		<label for="file">Upload gambar/teks:</label><br>
+		<input type="file" id="file" name="file"><br><br>
+		<label for="answer-type">Jenis jawaban:</label><br>
+		<select id="answer-type" name="answer-type">
+			<option value="multiple-choice">Pilihan ganda</option>
+			<option value="essay">Essay</option>
+		</select><br><br>
+		<label for="answer">Jawaban:</label><br>
+		<input type="text" id="answer" name="answer" required><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	<br>
+	<div style="border: 1px solid black; padding: 10px;">
+		<h3>Pertanyaan:</h3>
+		<p id="question-output"></p>
+		<h3>Elemen pendukung:</h3>
+		<div id="supporting-element-output"></div>
+		<h3>Jawaban:</h3>
+		<p id="answer-output"></p>
+	</div>
+	<script>
+		const form = document.querySelector('form');
+		const questionOutput = document.querySelector('#question-output');
+		const supportingElementOutput = document.querySelector('#supporting-element-output');
+		const answerOutput = document.querySelector('#answer-output');
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			// Get user input
+			const question = document.querySelector('#question').value;
+			const file = document.querySelector('#file').value;
+			const answerType = document.querySelector('#answer-type').value;
+			const answer = document.querySelector('#answer').value;
+
+			// Update output
+			questionOutput.textContent = question;
+			if (file) {
+				supportingElementOutput.innerHTML = `<img src="${file}" alt="Supporting element">`;
+			}
+			answerOutput.textContent = answer;
+		});
+	</script>
+</body>
+</html>
