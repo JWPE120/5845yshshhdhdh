@@ -15,6 +15,11 @@
 			<option value="multiple-choice">Pilihan ganda</option>
 			<option value="essay">Essay</option>
 		</select><br><br>
+		<label for="supporting-element-type">Jenis elemen pendukung:</label><br>
+		<select id="supporting-element-type" name="supporting-element-type">
+			<option value="text">Teks</option>
+			<option value="image">Gambar</option>
+		</select><br><br>
 		<label for="answer">Jawaban:</label><br>
 		<div id="answer-input"></div><br>
 		<input type="submit" value="Submit">
@@ -42,6 +47,7 @@
 			const question = document.querySelector('#question').value;
 			const file = document.querySelector('#file').value;
 			const answerType = document.querySelector('#answer-type').value;
+			const supportingElementType = document.querySelector('#supporting-element-type').value;
 			let answer;
 
 			if (answerType === 'multiple-choice') {
@@ -51,8 +57,10 @@
 
 			// Update output
 			questionOutput.textContent = question;
-			if (file) {
+			if (file && supportingElementType === 'image') {
 				supportingElementOutput.innerHTML = `<img src="${file}" alt="Supporting element">`;
+			} else if (supportingElementType === 'text') {
+				supportingElementOutput.textContent = file;
 			}
 			answerOutput.textContent = Array.isArray(answer) ? answer.join(', ') : answer;
 		});
